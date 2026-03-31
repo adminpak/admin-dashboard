@@ -10,6 +10,8 @@ export const register = mutation({
     aadharCardnumber: v.string(),
     email: v.optional(v.string()),
     password: v.string(),
+    pfNumber: v.optional(v.string()),
+    esiNumber: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     // Check if employee with phonenumber already exists
@@ -31,6 +33,8 @@ export const register = mutation({
       aadharCardnumber: args.aadharCardnumber,
       email: args.email,
       password: hashedPassword,
+      pfNumber: args.pfNumber,
+      esiNumber: args.esiNumber,
     });
 
     const token = crypto.randomUUID();
@@ -149,6 +153,8 @@ export const updatePersonal = mutation({
     lastname: v.string(),
     email: v.optional(v.string()),
     aadharCardnumber: v.string(),
+    pfNumber: v.optional(v.string()),
+    esiNumber: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     await ctx.db.patch(args.userId, {
@@ -156,6 +162,8 @@ export const updatePersonal = mutation({
       lastname: args.lastname,
       email: args.email,
       aadharCardnumber: args.aadharCardnumber,
+      pfNumber: args.pfNumber,
+      esiNumber: args.esiNumber,
     });
     return true;
   },

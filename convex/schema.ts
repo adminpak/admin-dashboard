@@ -16,6 +16,8 @@ export default defineSchema({
     status: v.optional(v.string()), // "active", "inactive"
     joiningDate: v.optional(v.number()),
     employeeId: v.optional(v.string()), // Custom Employee ID
+    pfNumber: v.optional(v.string()),
+    esiNumber: v.optional(v.string()),
   }).index("by_phonenumber", ["phonenumber"]),
 
   attendance: defineTable({

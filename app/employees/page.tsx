@@ -233,6 +233,8 @@ function EmployeeDetailModal({ id, onClose }: { id: string, onClose: () => void 
                 status: details.status || "active",
                 joiningDate: details.joiningDate || Date.now(),
                 aadharCardnumber: details.aadharCardnumber || "",
+                pfNumber: details.pfNumber || "",
+                esiNumber: details.esiNumber || "",
             });
             setIsEditing(true);
         }
@@ -473,6 +475,34 @@ function EmployeeDetailModal({ id, onClose }: { id: string, onClose: () => void 
                                         <p className="text-white font-black tracking-tight uppercase text-sm">{details.aadharCardnumber || '---'}</p>
                                     )}
                                 </div>
+                                <div className="space-y-1">
+                                    <label className="text-white/40 text-xs font-bold flex items-center gap-2 italic">
+                                        <BadgeCheck className="w-3.5 h-3.5 text-emerald-400" /> PF Number
+                                    </label>
+                                    {isEditing ? (
+                                        <input 
+                                            className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white font-bold outline-none focus:border-emerald-500/50"
+                                            value={editForm.pfNumber}
+                                            onChange={e => setEditForm({...editForm, pfNumber: e.target.value})}
+                                        />
+                                    ) : (
+                                        <p className="text-white font-black tracking-tight uppercase text-sm">{details.pfNumber || '---'}</p>
+                                    )}
+                                </div>
+                                <div className="space-y-1">
+                                    <label className="text-white/40 text-xs font-bold flex items-center gap-2 italic">
+                                        <BadgeCheck className="w-3.5 h-3.5 text-emerald-400" /> ESI Number
+                                    </label>
+                                    {isEditing ? (
+                                        <input 
+                                            className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white font-bold outline-none focus:border-emerald-500/50"
+                                            value={editForm.esiNumber}
+                                            onChange={e => setEditForm({...editForm, esiNumber: e.target.value})}
+                                        />
+                                    ) : (
+                                        <p className="text-white font-black tracking-tight uppercase text-sm">{details.esiNumber || '---'}</p>
+                                    )}
+                                </div>
                             </div>
                          </div>
 
@@ -518,6 +548,8 @@ function InviteEmployeeModal({ onClose }: { onClose: () => void }) {
         email: "",
         phone: "",
         aadharCardnumber: "",
+        pfNumber: "",
+        esiNumber: "",
         password: "",
         employeeId: "",
         role: "Employee",
@@ -546,6 +578,8 @@ function InviteEmployeeModal({ onClose }: { onClose: () => void }) {
                 status: formData.status,
                 joiningDate: new Date(formData.joiningDate).getTime(),
                 aadharCardnumber: formData.aadharCardnumber,
+                pfNumber: formData.pfNumber ? formData.pfNumber : undefined,
+                esiNumber: formData.esiNumber ? formData.esiNumber : undefined,
                 password: formData.password,
             });
             toast.success("Employee created successfully!");
@@ -638,6 +672,26 @@ function InviteEmployeeModal({ onClose }: { onClose: () => void }) {
                                 value={formData.aadharCardnumber}
                                 onChange={e => setFormData({...formData, aadharCardnumber: e.target.value})}
                                 placeholder="XXXX XXXX XXXX"
+                                className="w-full bg-white/5 border border-white/5 hover:border-white/20 rounded-2xl px-6 py-4 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition-all font-bold tracking-tight"
+                            />
+                        </div>
+                        <div className="space-y-3">
+                            <label className="text-white/20 text-[10px] font-black uppercase tracking-[0.2em] px-2 italic">PF Number</label>
+                            <input 
+                                type="text" 
+                                value={formData.pfNumber}
+                                onChange={e => setFormData({...formData, pfNumber: e.target.value})}
+                                placeholder="Optional"
+                                className="w-full bg-white/5 border border-white/5 hover:border-white/20 rounded-2xl px-6 py-4 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition-all font-bold tracking-tight"
+                            />
+                        </div>
+                        <div className="space-y-3">
+                            <label className="text-white/20 text-[10px] font-black uppercase tracking-[0.2em] px-2 italic">ESI Number</label>
+                            <input 
+                                type="text" 
+                                value={formData.esiNumber}
+                                onChange={e => setFormData({...formData, esiNumber: e.target.value})}
+                                placeholder="Optional"
                                 className="w-full bg-white/5 border border-white/5 hover:border-white/20 rounded-2xl px-6 py-4 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition-all font-bold tracking-tight"
                             />
                         </div>

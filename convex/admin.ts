@@ -36,6 +36,8 @@ export const createEmployee = mutation({
     joiningDate: v.optional(v.number()),
     aadharCardnumber: v.string(),
     password: v.string(),
+    pfNumber: v.optional(v.string()),
+    esiNumber: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     const existing = await ctx.db
@@ -58,6 +60,8 @@ export const createEmployee = mutation({
       joiningDate: args.joiningDate ?? Date.now(),
       aadharCardnumber: args.aadharCardnumber,
       password: args.password,
+      pfNumber: args.pfNumber,
+      esiNumber: args.esiNumber,
     });
   },
 });
@@ -81,6 +85,8 @@ export const updateEmployee = mutation({
     status: v.optional(v.string()),
     joiningDate: v.optional(v.number()),
     aadharCardnumber: v.optional(v.string()),
+    pfNumber: v.optional(v.string()),
+    esiNumber: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     const { id, ...data } = args;

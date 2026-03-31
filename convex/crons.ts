@@ -45,10 +45,10 @@ crons.daily(
   internal.notifications.notifyAbsentReasonRequired,
 );
 
-// 7. Auto Fill "No Reason" - 11:00 PM IST (17:30 UTC)
+// 7. Auto Fill "No Reason" - 11:59 PM IST (18:29 UTC)
 crons.daily(
   "auto-fill-absent-reason",
-  { hourUTC: 17, minuteUTC: 30 },
+  { hourUTC: 18, minuteUTC: 29 },
   internal.attendance.autoFillAbsentReason,
 );
 
